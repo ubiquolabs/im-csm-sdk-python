@@ -1,0 +1,65 @@
+[project]
+name = "im-csm-sdk-python"
+version = "0.1.0"
+description = "SDK Python"
+authors = [ { name="Julio Rodriguez", email="julio.rodriguez@ubiquo.io" } ]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "humanize>=4.10.0",
+    "loguru>=0.7.3",
+    "python-dotenv>=1.0.1",
+    
+]
+
+[dependency-groups]
+dev = [
+    "poethepoet>=0.30.0",
+    "pytest>=8.3.5",
+    "ruff>=0.9.10",
+    
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.7",
+    "mkdocstrings[python]>=0.26.1",
+    
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Ruff config
+
+[tool.ruff]
+line-length = 79
+indent-width = 4
+include = ["pyproject.toml", "im_csm_sdk_python/**/*.py", "tests/**/*.py"]
+exclude = ["__init__.py"]
+
+[tool.ruff.lint]
+extend-select = ["D", "E", "F", "B", "SIM", "I"]
+ignore = ["D100"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "single"
+docstring-code-format = true
+skip-magic-trailing-comma = false
+
+# Scripts
+
+[project.scripts]
+dev = "im_csm_sdk_python.main:main"
+
+[tool.poe.tasks]
+
+dev = "python -m im_csm_sdk_python.main"
+
+docs = "mkdocs serve -w im_csm_sdk_python"
+test = "python -m pytest tests -v"
+
+# examples
+# mksandwich = { script = "im_csm_sdk_python.main:main" } 
+# serve = "uvicorn --reload --port 4000 --host 0.0.0.0 im_csm_sdk_python.main:app"

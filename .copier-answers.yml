@@ -1,0 +1,12 @@
+# This file stores the answers to the questions asked during template copy.
+# This file helps Copier to autocomplete the same questions next time you run it.
+_src_path: /home/julio/developer/python/templates/fastapi-template
+project_name: im-csm-sdk-python
+project_slug: im_csm_sdk_python
+project_description: SDK Python
+author_name: Julio Rodriguez
+author_email: julio.rodriguez@ubiquo.io
+use_docker: False
+database_type: none
+use_docs: True
+use_precommit: False

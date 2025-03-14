@@ -1,0 +1,40 @@
+site_name: im-csm-sdk-python
+
+theme:
+  name: "material"
+  features:
+    - content.tabs.link
+  palette:
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+plugins:
+  - mkdocstrings
+  - search
+
+nav:
+  - im-csm-sdk-python: index.md
+  - Reference:
+      - reference/intro.md
+      - reference/example.md
+      - reference/configuration.md
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - tables
+  - admonition # https://squidfunk.github.io/mkdocs-material/reference/admonitions/#supported-types
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+      
+# reference: https://squidfunk.github.io/mkdocs-material/reference/

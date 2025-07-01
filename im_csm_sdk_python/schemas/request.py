@@ -22,6 +22,7 @@ class ApiRequest(BaseModel):
         params (dict, optional): Query parameters for the request.
         data (dict, optional): Data to send in the request body.
     """
+
     model_config = ConfigDict(use_enum_values=True)
 
     endpoint: str = Field(description='The API endpoint to call')

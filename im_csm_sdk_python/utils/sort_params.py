@@ -7,4 +7,4 @@ def sort_params(params):
     Returns:
         dict: Sorted dictionary by keys
     """
-    return {key: params[key] for key in sorted(params.keys())} 
+    return {key: params[key] for key in sorted(params.keys())}

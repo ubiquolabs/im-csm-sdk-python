@@ -54,12 +54,7 @@ def authorization(config):
     signature = base64.b64encode(sign).decode('utf-8')
 
     logger.trace(
-        {
-            'formatted_data': formatted_data,
-            'formatted_params': formatted_params,
-            'canonical_string': canonical_string,
-            'sign': signature,
-        }
+        f'{formatted_data=}, {formatted_params=}, {canonical_string=}, {signature=}'
     )
 
     auth['Date'] = formatted_date

@@ -55,7 +55,7 @@ class ListContactsParams(BaseModel):
     """Schema for the parameters of a list contacts request."""
 
     model_config = ConfigDict(use_enum_values=True)
-    
+
     status: Optional[list[ContactStatus]] = Field(
         default=None, description='The contact status to find'
     )

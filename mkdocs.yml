@@ -1,9 +1,23 @@
-site_name: im-csm-sdk-python
+site_name: IM CSM SDK Python
+site_description: Python SDK for Interactúa Móvil Contact SMS services
+site_author: Julio Rodriguez
+site_url: https://your-docs-site.com
+
+repo_name: im-csm-sdk-python
+repo_url: https://github.com/your-org/im-csm-sdk-python
 
 theme:
   name: "material"
   features:
     - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.suggest
   palette:
     # Palette toggle for dark mode
     - scheme: slate
@@ -17,24 +31,60 @@ theme:
         name: Switch to dark mode
 
 plugins:
-  - mkdocstrings
-  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ['im_csm_sdk_python', 'example']
+          options:
+            docstring_style: google
+            show_root_heading: true
+            show_source: false
+            heading_level: 4
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
 
 nav:
-  - im-csm-sdk-python: index.md
-  - Reference:
+  - Home: index.md
+  - Configuration: configuration.md
+  - Examples: examples/index.md
+  - API Reference:
       - reference/intro.md
-      - reference/example.md
-      - reference/configuration.md
+      - Core Functions: reference/index.md
+      - Example Script: reference/example.md
+  - Troubleshooting: troubleshooting.md
 
 markdown_extensions:
   - attr_list
   - md_in_html
   - tables
-  - admonition # https://squidfunk.github.io/mkdocs-material/reference/admonitions/#supported-types
+  - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
-      alternate_style: true 
-      
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/im-csm-sdk-python/
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-org/im-csm-sdk-python
+
+copyright: Copyright &copy; 2025 Julio Rodriguez
+
 # reference: https://squidfunk.github.io/mkdocs-material/reference/

@@ -53,3 +53,4 @@ dev = "im_csm_sdk_python.main:main"
 
 [tool.poe.tasks]
 dev = "python -m im_csm_sdk_python.main"
+docs = "mkdocs serve"

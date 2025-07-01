@@ -12,7 +12,7 @@ def send_request(api_request: ApiRequest) -> Response:
     """Send authenticated request to API.
 
     Args:
-        api_request (ApiRequest): Request data containing type, endpoint, params, data
+        api_request (ApiRequest): Request data containing type, endpoint, params, data.
 
     Returns:
         httpx.Response: Response from the API
@@ -20,7 +20,7 @@ def send_request(api_request: ApiRequest) -> Response:
     Raises:
         ValueError: If required API configuration is missing
         HTTPStatusError: If HTTP request fails
-    """
+    """  # noqa: E501
     request_config = get_config()
 
     request_config['params'] = api_request.params

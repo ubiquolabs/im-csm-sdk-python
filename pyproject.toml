@@ -31,7 +31,7 @@ build-backend = "hatchling.build"
 [tool.ruff]
 line-length = 79
 indent-width = 4
-include = ["pyproject.toml", "im_csm_sdk_python/**/*.py", "tests/**/*.py"]
+include = ["pyproject.toml", "im_csm_sdk_python/**/*.py", "tests/**/*.py", "example/**/*.py"]
 exclude = ["__init__.py"]
 
 [tool.ruff.lint]

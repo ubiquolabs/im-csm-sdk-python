@@ -53,9 +53,10 @@ def authorization(config):
     ).digest()
     signature = base64.b64encode(sign).decode('utf-8')
 
-    logger.trace(
-        f'{formatted_data=}, {formatted_params=}, {canonical_string=}, {signature=}'
-    )
+    logger.trace(f'{formatted_data=}')
+    logger.trace(f'{formatted_params=}')
+    logger.trace(f'{canonical_string=}')
+    logger.trace(f'{signature=}')
 
     auth['Date'] = formatted_date
     auth['Authorization'] = f'IM {config["apiKey"]}:{signature}'

@@ -26,3 +26,21 @@ python -m im_csm_sdk_python.main
 ## Author
 
 - Julio Rodriguez <julio.rodriguez@ubiquo.io> 
+
+
+## Operations
+
+### Status
+
+- Get status of the API
+
+### Contacts
+
+- Get a contact
+- List contacts
+
+
+## Messages
+
+- List messages
+- Send message to contact

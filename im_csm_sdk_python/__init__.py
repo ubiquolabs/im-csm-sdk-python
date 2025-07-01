@@ -15,10 +15,6 @@ from .core.status import get_status
 from .configs.config import get_config
 from .configs.logger import logger
 
-__version__ = '1.0.0'
-__author__ = 'IM Team'
-__email__ = 'support@interactuamovil.com'
-
 __all__ = [
     # Core functions
     'list_contacts',
@@ -28,8 +24,5 @@ __all__ = [
     'get_status',
     # Configuration
     'get_config',
-    # Meta info
-    '__version__',
-    '__author__',
-    '__email__',
+    'logger',
 ]

@@ -82,7 +82,9 @@ class SendToContactResponse(BaseModel):
         description='The short code used to send the message'
     )
     type: int = Field(description='The type of message')
-    direction: str = Field(description='The direction of the message (MT/MO)')
+    direction: MessageDirection = Field(
+        description='The direction of the message (MT/MO)'
+    )
     status: str = Field(description='The status of the sent message')
     sent_from: str = Field(
         description='Source from where the message was sent'
@@ -98,4 +100,39 @@ class SendToContactResponse(BaseModel):
     is_scheduled: bool = Field(description='Whether the message is scheduled')
     created_on: datetime = Field(description='When the message was created')
     created_by: str = Field(description='Who created the message')
+    total_monitors: int = Field(description='Total number of monitors')
+
+
+class SendToTagsData(BaseModel):
+    """Schema for the data payload of a send message to tags request."""
+
+    tags: list[str] = Field(description='The tags to send the message to')
+    message: str = Field(description='The message content to send')
+    id: Optional[str] = Field(
+        description='Optional message identifier', default=None
+    )
+
+
+class SendToTagsResponse(BaseModel):
+    """Schema for the response of a send message to tags request."""
+
+    id: str = Field(description='Unique identifier for the message')
+    short_code: str = Field(
+        description='The short code used to send the message'
+    )
+    type: int = Field(description='The type of message')
+    direction: MessageDirection = Field(
+        description='The direction of the message (MT/MO)'
+    )
+    status: str = Field(description='The status of the sent message')
+    sent_from: str = Field(
+        description='Source from where the message was sent'
+    )
+    message: str = Field(description='The message content sent')
+    sent_count: int = Field(description='Number of messages sent')
+    error_count: int = Field(description='Number of errors occurred')
+    total_recipients: int = Field(description='Total number of recipients')
+    is_billable: bool = Field(description='Whether the message is billable')
+    is_scheduled: bool = Field(description='Whether the message is scheduled')
+    created_on: datetime = Field(description='When the message was created')
     total_monitors: int = Field(description='Total number of monitors')

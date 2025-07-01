@@ -11,6 +11,7 @@ from .core.contacts import get_contact, list_contacts
 from .core.messages import (
     list_messages,
     send_to_contact,
+    send_to_tags,
 )
 from .core.status import get_status
 
@@ -21,6 +22,7 @@ __all__ = [
     'list_messages',
     'send_to_contact',
     'get_status',
+    'send_to_tags',
     # Configuration
     'get_config',
     'logger',

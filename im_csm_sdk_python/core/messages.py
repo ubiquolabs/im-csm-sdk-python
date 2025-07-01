@@ -9,13 +9,15 @@ from ..schemas.messages import (
     Message,
     SendToContactData,
     SendToContactResponse,
+    SendToTagsData,
+    SendToTagsResponse,
 )
 from ..schemas.request import ApiRequest, ApiRequestType
 
 ta_messages = TypeAdapter(List[Message])
 ta_message = TypeAdapter(Message)
-ta_send_to_contact_data = TypeAdapter(SendToContactData)
 ta_send_to_contact_response = TypeAdapter(SendToContactResponse)
+ta_send_to_tags_response = TypeAdapter(SendToTagsResponse)
 
 
 def list_messages(params: ListMessagesParams) -> List[Message]:
@@ -76,4 +78,28 @@ def send_to_contact(data: SendToContactData) -> SendToContactResponse:
         return ta_send_to_contact_response.validate_python(response_data)
     except Exception as e:
         logger.error(f'Error sending message to contact: {e}')
+        raise e
+
+
+def send_to_tags(data: SendToTagsData) -> SendToTagsResponse:
+    """Sends a message to a specific tag.
+
+    Args:
+        data (SendToTagsData): The data payload to send the message.
+    """
+    try:
+        logger.info(f'Step 1. Send message to tags {data.tags}')
+
+        response = send_request(
+            ApiRequest(
+                type=ApiRequestType.POST,
+                endpoint='messages/send',
+                data=data.model_dump(exclude_none=True),
+            )
+        )
+
+        response_data = response.json()
+        return ta_send_to_tags_response.validate_python(response_data)
+    except Exception as e:
+        logger.error(f'Error sending message to tags: {e}')
         raise e

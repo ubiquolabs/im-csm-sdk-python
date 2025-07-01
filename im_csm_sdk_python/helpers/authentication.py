@@ -30,7 +30,7 @@ def authorization(config):
         return 'Keys are needed!'
 
     if config.get('data'):
-        formatted_data = json.dumps(config['data'])
+        formatted_data = json.dumps(config['data'], separators=(',', ':'))
 
     if config.get('params'):
         sorted_params = sort_params(config['params'])

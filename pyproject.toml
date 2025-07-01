@@ -47,10 +47,6 @@ docstring-code-format = true
 skip-magic-trailing-comma = false
 
 # Scripts
-
-[project.scripts]
-dev = "im_csm_sdk_python.main:main"
-
 [tool.poe.tasks]
-dev = "python -m im_csm_sdk_python.main"
+dev = "python example/main.py"
 docs = "mkdocs serve"

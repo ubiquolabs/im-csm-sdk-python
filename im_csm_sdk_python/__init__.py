@@ -4,16 +4,15 @@
 # A Python SDK for Interactúa Móvil Contact SMS services
 
 # Core functionality
-from .core.contacts import list_contacts, get_contact
+# Configuration
+from .configs.config import get_config
+from .configs.logger import logger
+from .core.contacts import get_contact, list_contacts
 from .core.messages import (
     list_messages,
     send_to_contact,
 )
 from .core.status import get_status
-
-# Configuration
-from .configs.config import get_config
-from .configs.logger import logger
 
 __all__ = [
     # Core functions

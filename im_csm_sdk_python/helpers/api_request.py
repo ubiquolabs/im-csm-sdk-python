@@ -21,7 +21,6 @@ def send_request(api_request: ApiRequest) -> Response:
         ValueError: If required API configuration is missing
         HTTPStatusError: If HTTP request fails
     """
-    # Validate config
     request_config = get_config()
 
     request_config['params'] = api_request.params
@@ -43,7 +42,7 @@ def send_request(api_request: ApiRequest) -> Response:
         response = request(
             method=api_request.type,
             url=urljoin(
-                request_config['url'], f'/api/rest/{api_request.endpoint}'
+                request_config['url'], f'/api/rest{api_request.endpoint}'
             ),
             json=api_request.data,
             params=api_request.params,

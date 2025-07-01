@@ -30,6 +30,9 @@ The example script includes the following demonstration functions:
 ### Status Examples
 - `example_status()` - Shows how to check API status
 
+### Send to Tags Examples
+- `example_send_to_tags()` - Shows how to send messages to tags
+
 ## What the Example Demonstrates
 
 1. **Configuration**: How to set up and validate SDK configuration

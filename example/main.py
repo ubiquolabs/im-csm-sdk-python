@@ -12,6 +12,7 @@ from im_csm_sdk_python.schemas.messages import (
     ListMessagesParams,
     MessageDirection,
     SendToContactData,
+    SendToTagsData,
 )
 
 
@@ -79,14 +80,31 @@ def example_status():
     logger.info(f'API Status: {status}')
 
 
+def example_send_to_tags():
+    """Example of using send to tags function."""
+    logger.info('=== Testing Send to Tags ===')
+
+    sent_message = im_sdk.send_to_tags(
+        SendToTagsData(
+            tags=['python'],
+            message='Hello from Python SDK with tags!',
+            id=str(uuid4()),
+        )
+    )
+    logger.info(
+        f'Sent message: {sent_message.id=} - {sent_message.status=}'
+    )
+
+
 def main():
     """Main example function."""
     logger.info('Starting IM CSM SDK Python Example')
 
     try:
         # example_contacts()
-        example_messages()
-        # example_status()
+        # example_messages()
+        # example_send_to_tags()
+        example_status()
 
         logger.info('All examples completed successfully!')
 

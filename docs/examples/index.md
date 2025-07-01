@@ -151,6 +151,29 @@ except Exception as e:
     print(f"Failed to send message: {e}")
 ```
 
+### Send Message to Tags
+
+```python
+from uuid import uuid4
+from im_csm_sdk_python.schemas.messages import SendToTagsData
+
+# Send a message to all contacts with specific tags
+try:
+    response = im_sdk.send_to_tags(
+        SendToTagsData(
+            tags=["vip", "newsletter"],
+            message="Hello to all VIP and newsletter contacts!",
+            id=str(uuid4())  # Optional unique message ID
+        )
+    )
+    print(f"Message sent to tags!")
+    print(f"Message ID: {response.id}")
+    print(f"Status: {response.status}")
+    print(f"Sent count: {response.sent_count}")
+except Exception as e:
+    print(f"Failed to send message to tags: {e}")
+```
+
 ## Advanced Examples
 
 ### Bulk Operations

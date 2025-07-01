@@ -37,6 +37,11 @@ The SDK exposes the following main functions through the `im_csm_sdk_python` pac
         show_root_heading: true
         show_root_members_full_path: false
 
+::: im_csm_sdk_python.core.messages.send_to_tags
+    options:
+        show_root_heading: true
+        show_root_members_full_path: false
+
 ## Configuration
 
 ::: im_csm_sdk_python.configs.config.get_config

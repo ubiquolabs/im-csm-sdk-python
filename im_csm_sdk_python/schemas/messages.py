@@ -62,6 +62,9 @@ class ListMessagesParams(BaseModel):
     direction: Optional[MessageDirection] = Field(
         description='The direction of the messages', default=None
     )
+    delivery_status_enable: bool = Field(
+        default=True, description='Whether the delivery status is enabled'
+    )
 
 
 class SendToContactData(BaseModel):

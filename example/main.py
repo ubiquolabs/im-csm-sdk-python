@@ -52,6 +52,7 @@ def example_messages():
             limit=50,
             msisdn='50231241024',
             direction=MessageDirection.MT,
+            delivery_status_enable=True,
         )
     )
     logger.info(f'Found {len(messages)} messages')

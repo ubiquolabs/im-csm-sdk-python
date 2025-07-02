@@ -63,7 +63,7 @@ class ListMessagesParams(BaseModel):
         description='The direction of the messages', default=None
     )
     delivery_status_enable: bool = Field(
-        default=True, description='Whether the delivery status is enabled'
+        default=False, description='Whether the delivery status is enabled'
     )
 
 

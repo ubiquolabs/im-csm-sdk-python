@@ -91,9 +91,7 @@ def example_send_to_tags():
             id=str(uuid4()),
         )
     )
-    logger.info(
-        f'Sent message: {sent_message.id=} - {sent_message.status=}'
-    )
+    logger.info(f'Sent message: {sent_message.id=} - {sent_message.status=}')
 
 
 def main():

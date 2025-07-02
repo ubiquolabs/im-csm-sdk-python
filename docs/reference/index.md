@@ -92,7 +92,7 @@ The SDK exposes the following main functions through the `im_csm_sdk_python` pac
 
 ### Sort Parameters
 
-::: im_csm_sdk_python.utils.sort_params
+::: im_csm_sdk_python.utils.param_utils
     options:
         show_root_heading: true
         show_root_members_full_path: false

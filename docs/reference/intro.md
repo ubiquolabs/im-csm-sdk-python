@@ -7,7 +7,7 @@ This section provides comprehensive technical documentation for the IM CSM SDK P
 The API reference is organized into the following sections:
 
 - **[Core Functions](index.md)** - Main SDK functions for contacts, messages, and status
-- **[Configuration](configuration.md)** - Configuration functions and environment variables
+- **[Configuration](../configuration.md)** - Configuration functions and environment variables
 - **[Example](example.md)** - Documentation of the example script
 
 ## SDK Architecture
@@ -33,7 +33,7 @@ The IM CSM SDK Python is structured as follows:
 - `helpers/authentication.py` - Authentication utilities
 
 ### Utilities
-- `utils/sort_params.py` - Parameter sorting utilities
+- `utils/param_utils.py` - Parameter sorting utilities
 - `utils/timeit.py` - Timing and performance utilities
 
 ## Type Safety

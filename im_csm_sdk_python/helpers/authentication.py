@@ -3,18 +3,17 @@ import hashlib
 import hmac
 import json
 from datetime import datetime
-from urllib.parse import quote as q_parse
 
 from loguru import logger
 
-from ..utils.sort_params import sort_params
+from ..utils.param_utils import sort_params, to_str
 
 
-def authorization(config):
+def authorization(config: dict) -> dict:
     """Generate authentication headers for API requests.
 
     Args:
-        config(dict): Configuration containing apiKey, apiSecret, data
+        config (dict): Configuration containing apiKey, apiSecret, data
 
     Returns:
         dict: Authentication headers with Date and Authorization
@@ -36,7 +35,7 @@ def authorization(config):
         sorted_params = sort_params(config['params'])
         formatted_params = '&'.join(
             [
-                f'{key}={q_parse(str(sorted_params[key])).replace("%20", "+")}'
+                f'{key}={to_str(sorted_params[key]).replace("%20", "+")}'
                 for key in sorted_params
             ]
         )

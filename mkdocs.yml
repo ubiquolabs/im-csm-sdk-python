@@ -4,7 +4,7 @@ site_author: Julio Rodriguez
 site_url: https://your-docs-site.com
 
 repo_name: im-csm-sdk-python
-repo_url: https://github.com/your-org/im-csm-sdk-python
+repo_url: https://github.com/ubiquolabs/im-csm-sdk-python
 
 theme:
   name: "material"
@@ -83,8 +83,8 @@ extra:
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/im-csm-sdk-python/
     - icon: fontawesome/brands/github
-      link: https://github.com/your-org/im-csm-sdk-python
+      link: https://github.com/ubiquolabs/im-csm-sdk-python
 
-copyright: Copyright &copy; 2025 Julio Rodriguez
+copyright: Copyright &copy; 2025 Ubiquo Labs
 
 # reference: https://squidfunk.github.io/mkdocs-material/reference/

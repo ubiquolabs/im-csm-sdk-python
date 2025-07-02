@@ -94,6 +94,6 @@ This example demonstrates all the main features of the SDK including contact man
 ## Next Steps
 
 - [Configuration Guide](configuration.md) - Learn how to configure the SDK
-- [API Reference](reference/index.md) - Complete API documentation
 - [Examples](examples/index.md) - More usage examples
+- [API Reference](reference/index.md) - Complete API documentation
 - [Troubleshooting](troubleshooting.md) - Common issues and solutions 

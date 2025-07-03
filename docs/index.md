@@ -18,13 +18,29 @@ The IM CSM SDK Python provides a simple and efficient way to interact with the I
 
 ### Installation
 
+#### Option 1: Using requirements.txt (Recommended for production)
+
 ```bash
 # Create and activate a virtual environment (recommended)
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install the SDK
-pip install -e .
+# Install dependencies using requirements.txt
+pip install -r requirements.txt
+```
+
+#### Option 2: Using uv (Fastest)
+
+```bash
+# Install uv if you haven't already
+pip install uv
+
+# Create and activate a virtual environment
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install dependencies
+uv sync
 ```
 
 ### Configuration

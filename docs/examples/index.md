@@ -73,7 +73,7 @@ for contact in contacts:
 
 ```python
 try:
-    contact = im_sdk.get_contact("1234567890")
+    contact = im_sdk.get_contact("50212345678")
     print(f"Contact Details:")
     print(f"  Name: {contact.full_name}")
     print(f"  Phone: {contact.msisdn}")
@@ -137,7 +137,7 @@ from im_csm_sdk_python.schemas.messages import SendToContactData
 try:
     sent_message = im_sdk.send_to_contact(
         SendToContactData(
-            msisdn="1234567890",
+            msisdn="50212345678",
             message="Hello! This is a test message from the Python SDK.",
             id=str(uuid4())  # Unique message ID
         )
@@ -182,7 +182,7 @@ except Exception as e:
 from uuid import uuid4
 
 # Send messages to multiple contacts
-contacts_to_message = ["1234567890", "0987654321", "1122334455"]
+contacts_to_message = ["50212345678", "50212345678", "50212345678"]
 message_text = "Bulk message from Python SDK"
 
 for msisdn in contacts_to_message:
@@ -262,7 +262,7 @@ def safe_send_message(msisdn: str, message: str):
         return None
 
 # Usage
-result = safe_send_message("1234567890", "Test message")
+result = safe_send_message("50212345678", "Test message")
 if result:
     print(f"Success: {result.message_id}")
 else:

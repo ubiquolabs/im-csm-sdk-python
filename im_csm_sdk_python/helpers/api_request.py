@@ -39,6 +39,15 @@ def send_request(api_request: ApiRequest) -> Response:
         logger.trace(f'Data: {api_request.data}')
         logger.trace(f'Params: {api_request.params}')
 
+        headers = {
+            'Date': auth['Date'],
+            'Authorization': auth['Authorization'],
+            'X-IM-ORIGIN': auth['X-IM-ORIGIN'],
+        }
+        
+        # Log headers for debugging
+        logger.info(f'Request headers: {headers}')
+        
         response = request(
             method=api_request.type,
             url=urljoin(
@@ -46,10 +55,7 @@ def send_request(api_request: ApiRequest) -> Response:
             ),
             json=api_request.data,
             params=api_request.params,
-            headers={
-                'Date': auth['Date'],
-                'Authorization': auth['Authorization'],
-            },
+            headers=headers,
         )
 
         # Raise for HTTP errors

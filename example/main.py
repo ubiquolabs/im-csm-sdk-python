@@ -33,7 +33,7 @@ def example_contacts():
         logger.info(f'Contact: {contact.full_name} ({contact.msisdn})')
 
     logger.info('Getting contact...')
-    contact = im_sdk.get_contact('50231241024')
+    contact = im_sdk.get_contact('50212345678')
     logger.info(f'Contact: {contact.full_name} ({contact.msisdn})')
 
 
@@ -50,7 +50,7 @@ def example_messages():
             end_date=end_date,
             start=0,
             limit=50,
-            msisdn='50231241024',
+            msisdn='50212345678',
             direction=MessageDirection.MT,
             delivery_status_enable=True,
         )
@@ -63,7 +63,7 @@ def example_messages():
     logger.info('Sending message to contact...')
     sent_message = im_sdk.send_to_contact(
         SendToContactData(
-            msisdn='50211241024',
+            msisdn='50212345678',
             message='Hello from Python SDK!',
             id=str(uuid4()),
         )

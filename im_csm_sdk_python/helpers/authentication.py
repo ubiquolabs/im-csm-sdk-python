@@ -59,6 +59,7 @@ def authorization(config: dict) -> dict:
 
     auth['Date'] = formatted_date
     auth['Authorization'] = f'IM {config["apiKey"]}:{signature}'
+    auth['X-IM-ORIGIN'] = 'IM_SDK_PYTHON'
 
     logger.trace(f'Auth headers: {auth}')
 

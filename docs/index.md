@@ -74,12 +74,12 @@ contacts = im_sdk.list_contacts(
 )
 
 # Get a specific contact
-contact = im_sdk.get_contact("1234567890")
+contact = im_sdk.get_contact("50212345678")
 
 # Send a message
 sent_message = im_sdk.send_to_contact(
     SendToContactData(
-        msisdn="1234567890",
+        msisdn="50212345678",
         message="Hello from Python SDK!",
         id="unique-message-id"
     )

@@ -40,6 +40,7 @@ def send_request(api_request: ApiRequest) -> Response:
         logger.trace(f'Params: {api_request.params}')
 
         headers = {
+            'Content-Type': 'application/json; charset=utf-8',
             'Date': auth['Date'],
             'Authorization': auth['Authorization'],
             'X-IM-ORIGIN': auth['X-IM-ORIGIN'],

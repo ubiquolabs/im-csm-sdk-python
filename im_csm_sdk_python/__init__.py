@@ -13,6 +13,12 @@ from .core.messages import (
     send_to_contact,
     send_to_tags,
 )
+from .core.shortlinks import (
+    create_shortlink,
+    get_shortlink_by_id,
+    list_shortlinks,
+    update_shortlink_status,
+)
 from .core.status import get_status
 
 __all__ = [
@@ -23,6 +29,11 @@ __all__ = [
     'send_to_contact',
     'get_status',
     'send_to_tags',
+    # Shortlinks
+    'list_shortlinks',
+    'get_shortlink_by_id',
+    'create_shortlink',
+    'update_shortlink_status',
     # Configuration
     'get_config',
     'logger',

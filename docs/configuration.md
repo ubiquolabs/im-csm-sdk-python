@@ -114,14 +114,14 @@ def validate_setup():
     try:
         # Check configuration
         config = get_config()
-        logger.info("✅ Configuration valid")
+        logger.info("Configuration valid")
         
         # Check API connectivity
         status = get_status()
-        logger.info("✅ API connection successful")
+        logger.info("API connection successful")
         return True
     except Exception as e:
-        logger.error(f"❌ Setup failed: {e}")
+        logger.error(f"Setup failed: {e}")
         return False
 ```
 

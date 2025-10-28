@@ -3,6 +3,12 @@
 from datetime import datetime, timedelta
 from uuid import uuid4
 
+import sys
+import os
+
+# Add parent directory to path to ensure we can import the package
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import im_csm_sdk_python as im_sdk
 from im_csm_sdk_python.configs.logger import logger
 from im_csm_sdk_python.schemas.contacts import (
@@ -13,6 +19,10 @@ from im_csm_sdk_python.schemas.messages import (
     MessageDirection,
     SendToContactData,
     SendToTagsData,
+)
+from im_csm_sdk_python.schemas.shortlinks import (
+    CreateShortlinkData,
+    ListShortlinksParams,
 )
 
 
@@ -95,6 +105,51 @@ def example_send_to_tags():
     logger.info(f'Sent message: {sent_message.id=} - {sent_message.status=}')
 
 
+def example_shortlinks():
+    """Example of using shortlinks functions."""
+    logger.info('=== Testing Shortlinks ===')
+
+    logger.info('Creating shortlink...')
+    created = im_sdk.create_shortlink(
+        CreateShortlinkData(
+            long_url='https://www.example.com/very-long-url-with-parameters',
+            name='Example Shortlink',
+            status='ACTIVE',
+        )
+    )
+    logger.info(
+        f'Created shortlink: {created.short_url} - Status: {created.status}'
+    )
+
+    logger.info('Listing shortlinks...')
+    shortlinks = im_sdk.list_shortlinks(
+        ListShortlinksParams(
+            limit=10,
+            offset=-6,
+        )
+    )
+    logger.info(f'Found {len(shortlinks)} shortlinks')
+    for shortlink in shortlinks[:3]:
+        logger.info(
+            f'Shortlink: {shortlink.name} - {shortlink.short_url} - '
+            f'{shortlink.status}'
+        )
+
+    if shortlinks:
+        shortlink_id = shortlinks[0].url_id or shortlinks[0]._id
+        if shortlink_id:
+            logger.info(f'Getting shortlink by ID: {shortlink_id}')
+            shortlink = im_sdk.get_shortlink_by_id(shortlink_id)
+            logger.info(
+                f'Shortlink details: {shortlink.name} - Visits: '
+                f'{shortlink.visits}'
+            )
+
+            logger.info(f'Updating shortlink status: {shortlink_id}')
+            updated = im_sdk.update_shortlink_status(shortlink_id, 'INACTIVE')
+            logger.info(f'Updated status: {updated.status}')
+
+
 def main():
     """Main example function."""
     logger.info('Starting IM CSM SDK Python Example')
@@ -103,7 +158,8 @@ def main():
         # example_contacts()
         # example_messages()
         # example_send_to_tags()
-        example_status()
+        # example_status()
+        example_shortlinks()
 
         logger.info('All examples completed successfully!')
 

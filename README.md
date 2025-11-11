@@ -70,6 +70,26 @@ python example/main.py
 
 This script demonstrates how to list messages, send a message, interact with contacts, and manage shortlinks. Check the code in `example/main.py` for more details and usage patterns.
 
+### Shortlinks CLI Commands
+
+You can run individual shortlink scenarios (mirroring the Java/JS runners) without editing the script:
+
+```bash
+python example/main.py shortlinks                       # Flujo completo (create + list + id + update)
+python example/main.py shortlinks run                   # Idéntico al flujo completo
+python example/main.py shortlinks create https://midominio.com/landing "Demo Python" ACTIVE miAlias
+python example/main.py shortlinks list 20 -6            # Límite y offset
+python example/main.py shortlinks date 2025-01-01 2025-12-31 20 -6
+python example/main.py shortlinks id 123ABC             # Usa un url_id real
+python example/main.py shortlinks update 123ABC INACTIVE
+python example/main.py shortlinks status                # Muestra estados permitidos
+```
+
+Notas:
+- El alias es opcional; si lo omites se genera uno aleatorio de 8 caracteres.
+- El comando `update` solo acepta `INACTIVE`, igual que la API; la reactivación no está soportada.
+- Para comandos `list` y `date`, `offset` representa el desfase horario (por ejemplo `-6` para Centroamérica).
+
 ## Testing
 
 ### Install Dependencies
@@ -100,10 +120,13 @@ created = create_shortlink(
     CreateShortlinkData(
         long_url="https://www.example.com/test",
         name="Test Shortlink",
+        alias="campaign_alias",
         status="ACTIVE"
     )
 )
 print(f"Created: {created.short_url}")
+
+> **Alias rules:** 1–30 printable characters, no spaces. Provide a custom alias only when you need a predictable slug; otherwise omit it and the platform will auto-generate one. Re-using the same alias on the same domain returns `500 Bad Request` from the ShortURL API. Shortlinks can be deactivated but **not** reactivated. Names are trimmed and limited to 50 characters.
 ```
 
 ## Main Operations
@@ -120,8 +143,8 @@ print(f"Created: {created.short_url}")
 - **Shortlinks**
   - List shortlinks: `im_csm_sdk_python.list_shortlinks(params)`
   - Get shortlink by ID: `im_csm_sdk_python.get_shortlink_by_id(shortlink_id)`
-  - Create shortlink: `im_csm_sdk_python.create_shortlink(data)`
-  - Update shortlink status: `im_csm_sdk_python.update_shortlink_status(shortlink_id, status)`
+  - Create shortlink: `im_csm_sdk_python.create_shortlink(data)` (alias optional, 1–30 chars, no spaces)
+  - Update shortlink status: `im_csm_sdk_python.update_shortlink_status(shortlink_id, status)` (only `INACTIVE` is accepted)
 
 ## API Response Examples
 
@@ -133,6 +156,7 @@ print(f"Created: {created.short_url}")
   "account_id": 12345,
   "url_id": "123ABC",
   "short_url": "https://shorturl-pais.com/123ABC",
+  "alias": "campaign_alias",
   "long_url": "https://www.example.com/very-long-url-with-parameters"
 }
 ```
@@ -150,6 +174,7 @@ print(f"Created: {created.short_url}")
       "status": "INACTIVE",
       "base_url": "https://shorturl-pais.com/",
       "short_url": "https://shorturl-pais.com/123ABC",
+      "alias": "campaign_alias",
       "long_url": "https://www.example.com/long-url-here",
       "visits": 0,
       "unique_visits": 0,
@@ -173,6 +198,7 @@ print(f"Created: {created.short_url}")
   "account_id": 12345,
   "url_id": "123ABC",
   "short_url": "https://shorturl-pais.com/123ABC",
+  "alias": "campaign_alias",
   "long_url": "https://www.example.com/long-url-with-parameters",
   "name": "Example Shortlink",
   "status": "ACTIVE",

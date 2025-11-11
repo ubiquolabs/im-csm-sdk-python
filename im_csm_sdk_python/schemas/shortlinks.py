@@ -2,7 +2,7 @@
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class Shortlink(BaseModel):
@@ -16,6 +16,7 @@ class Shortlink(BaseModel):
     base_url: Optional[str] = None
     short_url: Optional[str] = None
     long_url: Optional[str] = None
+    alias: Optional[str] = None
     visits: Optional[int] = 0
     unique_visits: Optional[int] = 0
     preview_visits: Optional[int] = 0
@@ -34,6 +35,33 @@ class CreateShortlinkData(BaseModel):
     long_url: str
     name: Optional[str] = None
     status: Optional[str] = "ACTIVE"
+    alias: Optional[str] = None
+
+    @field_validator("alias")
+    @classmethod
+    def validate_alias(cls, alias: Optional[str]) -> Optional[str]:
+        if alias is None:
+            return None
+        trimmed = alias.strip()
+        if not trimmed:
+            raise ValueError("alias cannot be empty")
+        if len(trimmed) > 30:
+            raise ValueError("alias must be 30 characters or fewer")
+        if any(ch.isspace() for ch in trimmed):
+            raise ValueError("alias cannot contain whitespace")
+        return trimmed
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, name: Optional[str]) -> Optional[str]:
+        if name is None:
+            return None
+        trimmed = name.strip()
+        if not trimmed:
+            return None
+        if len(trimmed) > 50:
+            raise ValueError("name must be 50 characters or fewer")
+        return trimmed
 
 
 class UpdateShortlinkStatusData(BaseModel):

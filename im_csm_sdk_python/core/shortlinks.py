@@ -109,7 +109,10 @@ def create_shortlink(data: CreateShortlinkData) -> Shortlink:
         Exception: If API response is invalid
     """
     try:
-        logger.info(f"Creating shortlink: {data.long_url}")
+        if data.alias:
+            logger.info("Creating shortlink: %s (alias=%s)", data.long_url, data.alias)
+        else:
+            logger.info("Creating shortlink: %s", data.long_url)
 
         response = send_request(
             ApiRequest(
@@ -131,20 +134,11 @@ def create_shortlink(data: CreateShortlinkData) -> Shortlink:
 def update_shortlink_status(
     shortlink_id: str, status: str
 ) -> Shortlink:
-    """Update shortlink status.
-
-    Args:
-        shortlink_id (str): The shortlink ID.
-        status (str): The new status (ACTIVE or INACTIVE).
-
-    Returns:
-        Shortlink: The updated shortlink
-
-    Raises:
-        Exception: If API response is invalid
-    """
+    """Update shortlink status."""
     try:
         logger.info(f"Updating shortlink status: {shortlink_id} to {status}")
+        if status.upper() == "ACTIVE":
+            raise ValueError("Shortlinks cannot be reactivated; only INACTIVE updates are supported.")
 
         response = send_request(
             ApiRequest(

@@ -1,3 +1,4 @@
+import gzip
 from urllib.parse import urljoin
 
 from httpx import HTTPStatusError, Response, request
@@ -44,6 +45,7 @@ def send_request(api_request: ApiRequest) -> Response:
             'Date': auth['Date'],
             'Authorization': auth['Authorization'],
             'X-IM-ORIGIN': auth['X-IM-ORIGIN'],
+            'Accept-Encoding': 'gzip, deflate',
         }
         
         # Log headers for debugging
@@ -62,8 +64,18 @@ def send_request(api_request: ApiRequest) -> Response:
         # Raise for HTTP errors
         response.raise_for_status()
 
+        # Handle compressed responses
+        if response.headers.get('Content-Encoding') == 'gzip':
+            response._content = gzip.decompress(response.content)
+            # Update response to treat as decompressed
+            response.encoding = 'utf-8'
+
         logger.trace(f'Request URL: {response.request.url}')
-        logger.trace(f'Request response: {response.json()}')
+        try:
+            logger.trace(f'Request response: {response.json()}')
+        except Exception:
+            # If logging fails, just log the status
+            pass
         logger.trace(f'Request response status: {response.status_code}')
 
         return response
